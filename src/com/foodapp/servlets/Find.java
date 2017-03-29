@@ -23,7 +23,7 @@ public class Find extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
 		Food food = holder.getByName(name);
-		out.append("Item name " + food.getName() + " Color is " + food.getColor() + "Cost is " + food.getCost());
+		out.append("Item name " + food.getName() + " Color is " + food.getColor() + " Cost is " + food.getCost());
 	}
 
 }
