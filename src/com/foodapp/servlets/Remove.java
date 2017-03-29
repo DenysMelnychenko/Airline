@@ -14,7 +14,7 @@ import com.foodapp.repository.ProductStorage;
 @WebServlet("/remove")
 public class Remove extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static ProductStorage holder = new ProductStorage();
+	private ProductStorage storage = ProductStorage.getInstance();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class Remove extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
 		String color = request.getParameter("color");
-		holder.remove(name, color);
+		storage.remove(name, color);
 		out.append("Product was remowed");
 	}
 

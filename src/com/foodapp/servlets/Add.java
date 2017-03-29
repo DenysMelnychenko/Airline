@@ -15,7 +15,7 @@ import com.foodapp.repository.ProductStorage;
 @WebServlet("/add")
 public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static ProductStorage holder = new ProductStorage();
+	private static ProductStorage storage = new ProductStorage();
 
 	public Add() {
 		super();
@@ -29,7 +29,7 @@ public class Add extends HttpServlet {
 		String color = request.getParameter("color");
 		int cost = Integer.parseInt(request.getParameter("cost"));
 		Food food = new Food(name, color, cost);
-		holder.add(food);
+		storage.add(food);
 		out.append(food.getName() + " was added!");
 
 	}

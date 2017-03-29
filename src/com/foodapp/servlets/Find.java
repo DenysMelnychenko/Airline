@@ -15,14 +15,14 @@ import com.foodapp.repository.ProductStorage;
 @WebServlet("/find")
 public class Find extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static ProductStorage holder = new ProductStorage();
+	private  ProductStorage storage = ProductStorage.getInstance();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
-		Food food = holder.getByName(name);
+		Food food = storage.getByName(name);
 		out.append("Item name " + food.getName() + " Color is " + food.getColor() + " Cost is " + food.getCost());
 	}
 

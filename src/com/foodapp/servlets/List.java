@@ -16,13 +16,13 @@ import com.foodapp.repository.ProductStorage;
 @WebServlet("/list")
 public class List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static ProductStorage holder = new ProductStorage();
+	private  ProductStorage storage = ProductStorage.getInstance();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		for (Map.Entry<Integer, Food> item : holder.getAll().entrySet()) {
+		for (Map.Entry<Integer, Food> item : storage.getAll().entrySet()) {
 			out.append("ID " + item.getKey() + " Name " + item.getValue().getName() + " Color "
 					+ item.getValue().getColor() + " Cost " + item.getValue().getCost());
 		}
