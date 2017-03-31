@@ -16,16 +16,20 @@ import com.foodapp.repository.ProductStorage;
 @WebServlet("/list")
 public class List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private  ProductStorage storage = ProductStorage.getInstance();
+	private ProductStorage storage = ProductStorage.getInstance();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		for (Map.Entry<Integer, Food> item : storage.getAll().entrySet()) {
-			out.append("ID " + item.getKey() + " Name " + item.getValue().getName() + " Color "
-					+ item.getValue().getColor() + " Cost " + item.getValue().getCost());
-		}
+		Map<Integer, Food> products = storage.getAll();
+		if (products.isEmpty()) {
+			out.append("List is empty");
+		} else
+			for (Map.Entry<Integer, Food> item : products.entrySet()) {
+				out.append("ID " + item.getKey() + " Name " + item.getValue().getName() + " Color "
+						+ item.getValue().getColor() + " Cost " + item.getValue().getCost() + "\n");
+			}
 	}
 
 }

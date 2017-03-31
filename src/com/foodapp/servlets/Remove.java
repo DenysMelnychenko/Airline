@@ -22,8 +22,12 @@ public class Remove extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
 		String color = request.getParameter("color");
-		storage.remove(name, color);
-		out.append("Product was remowed");
+		boolean removed = storage.remove(name, color);
+		if(removed) {
+			out.append("Product was remowed");
+		} else
+			out.append(name + " is not in list!");
+		
 	}
 
 }

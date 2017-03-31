@@ -27,12 +27,14 @@ public class ProductStorage {
 		storage.put(food.getId(), food);
 	}
 
-	public void remove(String food, String color) {
+	public boolean remove(String food, String color) {
 		for (Map.Entry<Integer, Food> item : storage.entrySet()) {
 			if (item.getValue().getName().equals(food) && item.getValue().getColor().equals(color)) {
 				storage.remove(item.getKey());
-			}
+				return true;
+			} 
 		}
+		 return false;
 
 	}
 

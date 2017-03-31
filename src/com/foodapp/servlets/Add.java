@@ -15,7 +15,7 @@ import com.foodapp.repository.ProductStorage;
 @WebServlet("/add")
 public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static ProductStorage storage = new ProductStorage();
+	private  ProductStorage storage = ProductStorage.getInstance();
 
 	public Add() {
 		super();
