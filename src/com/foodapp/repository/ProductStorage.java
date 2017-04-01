@@ -32,9 +32,9 @@ public class ProductStorage {
 			if (item.getValue().getName().equals(food) && item.getValue().getColor().equals(color)) {
 				storage.remove(item.getKey());
 				return true;
-			} 
+			}
 		}
-		 return false;
+		return false;
 
 	}
 
