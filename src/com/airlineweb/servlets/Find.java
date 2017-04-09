@@ -1,16 +1,17 @@
-package com.foodapp.servlets;
+package com.airlineweb.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.foodapp.models.Food;
-import com.foodapp.repository.ProductStorage;
+import com.airlineweb.models.Plane;
+import com.airlineweb.repository.ProductStorage;
 
 @WebServlet("/find")
 public class Find extends HttpServlet {
@@ -19,12 +20,15 @@ public class Find extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String indexPage = "dashboard.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(indexPage);
+		rd.forward(request, response);
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");
 		try {
-			Food food = storage.getByName(name);
-			out.append("Item name " + food.getName() + " Color is " + food.getColor() + " Cost is " + food.getCost());
+			Plane food = storage.getByName(name);
+			out.append("Item name " + food.getName() + " Color is " + food.getCapacity() + " Cost is " + food.getBuiltDate());
 		} catch (NullPointerException e) {
 			out.append(name + " not found ");
 		}

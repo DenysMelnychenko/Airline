@@ -1,0 +1,70 @@
+.links {
+  list-style: none;
+}
+.links li {
+  display: inline-block;
+  margin: 0 15px 0 0;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  background: violet;
+}
+.description  li {
+	margin: 0 auto;
+  width: 800px;
+  background-color: yellow;
+  padding: 5px;
+  border: 1px solid azure;
+}
+.add_form input {
+  background-color: yellow;
+  background-color: yellow;
+  width: 150px;
+}
+.add-form {
+  text-align: center;
+  border: 1px solid black;
+  width: 180px;
+  padding: 10px 5px 10px 5px;
+
+}
+input {
+
+  border: 1px solid black;
+}
+table, td, th {
+	background-color: yellow;
+  align-self: center;
+  text-align: center;
+     border: 1px solid black;
+     border-collapse: collapse;
+ }
+ .output {
+   margin: auto;
+   width: 505px;
+ }
+ table {
+   margin-top: 30px;
+ }
+ td, th {
+   width: 100px;
+ }
+.search_form {
+  margin-top: 25px;
+}
+button {
+  margin:10px 0 0 24px;
+}
+.add_form input[type="submit"] {
+  margin-top: 10px;
+}
+html {
+  background: #5EC4CD;
+}
+body {
+  text-align: center;
+}
+.parent {
+  margin:auto;
+  width: 170px;
+}

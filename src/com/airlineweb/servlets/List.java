@@ -1,7 +1,8 @@
-package com.foodapp.servlets;
+package com.airlineweb.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.foodapp.repository.ProductStorage;
+import com.airlineweb.models.Plane;
+import com.airlineweb.repository.ProductStorage;
 
-@WebServlet("/remove")
-public class Remove extends HttpServlet {
+@WebServlet("/list")
+public class List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductStorage storage = ProductStorage.getInstance();
 
@@ -20,14 +22,14 @@ public class Remove extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String name = request.getParameter("name");
-		String color = request.getParameter("color");
-		boolean removed = storage.remove(name, color);
-		if(removed) {
-			out.append("Product was remowed");
+		Map<Integer, Plane> products = storage.getAll();
+		if (products.isEmpty()) {
+			out.append("List is empty");
 		} else
-			out.append(name + " is not in list!");
-		
+			for (Map.Entry<Integer, Plane> item : products.entrySet()) {
+				out.append("ID " + item.getKey() + " Name " + item.getValue().getName() + " Color "
+						+ item.getValue().getCapacity() + " Cost " + item.getValue().getBuiltDate() + "\n");
+			}
 	}
 
 }

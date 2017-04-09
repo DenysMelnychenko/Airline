@@ -1,16 +1,17 @@
-package com.foodapp.servlets;
+package com.airlineweb.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.foodapp.models.Food;
-import com.foodapp.repository.ProductStorage;
+import com.airlineweb.models.Plane;
+import com.airlineweb.repository.ProductStorage;
 
 @WebServlet("/add")
 public class Add extends HttpServlet {
@@ -23,20 +24,23 @@ public class Add extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		String name = request.getParameter("name");
-		String color = request.getParameter("color");
-		int cost = Integer.parseInt(request.getParameter("cost"));
-		Food food = new Food(name, color, cost);
-		storage.add(food);
-		out.append(food.getName() + " was added!");
+		String indexPage = "add.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(indexPage);
+		rd.forward(request, response);
+		
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String model = request.getParameter("model");
+		int capacity = Integer.parseInt(request.getParameter("capacity"));
+		int date = Integer.parseInt(request.getParameter("date"));
+		Plane plane = new Plane(model, capacity, date);
+		storage.add(plane);
+		out.append(plane.getName() + " was added!");
 	}
 
 }
