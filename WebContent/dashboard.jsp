@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="com.airlineweb.repository.ProductStorage"%>
+<%@page import="com.airlineweb.models.Plane"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+
 <html>
 <head>
 <link rel="stylesheet" href="css/style.css">
@@ -11,7 +16,7 @@
 		<li><a href="add">Add</a></li>
 		<li><a href="find">Dashboard</a></li>
 	</ul>
-	<form class="search_form">
+	<form class="search_form" action="find" method="post">
 		<input type="text"> <input type="submit" value="Search">
 	</form>
 	<div class="output">
@@ -19,24 +24,25 @@
 			<tr>
 				<th>Number</th>
 				<th>Model</th>
-				<th>Capasity</th>
-				<th>Buid date</th>
+				<th>Capacity</th>
+				<th>Build date</th>
 				<th></th>
 			</tr>
+			
+			<% ProductStorage storage = ProductStorage.getInstance();%>
+				<% Map<Integer, Plane> planes = storage.getAll();%>
+				<%for(Map.Entry<Integer, Plane> plane : planes.entrySet()) { %>
 			<tr>
-				<td>1</td>
-				<td>Airbus-111</td>
-				<td>525</td>
-				<td>07.10.1989</td>
+				<td><%plane.getKey(); %></td>
+				<td><%plane.getValue().getName(); %></td>
+				<td><%plane.getValue().getCapacity(); %></td>
+				<td><%plane.getValue().getBuiltDate(); %></td>
 				<td><button>delete</button></td>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			 <%
+                }
+            %>
+			
 		</table>
 	</div>
 

@@ -23,6 +23,10 @@ public class Find extends HttpServlet {
 		String indexPage = "dashboard.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(indexPage);
 		rd.forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String name = request.getParameter("name");

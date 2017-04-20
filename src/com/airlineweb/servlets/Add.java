@@ -1,7 +1,6 @@
 package com.airlineweb.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +15,8 @@ import com.airlineweb.repository.ProductStorage;
 @WebServlet("/add")
 public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private  ProductStorage storage = ProductStorage.getInstance();
+	private ProductStorage storage = ProductStorage.getInstance();
+	private String addPage = "add.jsp";
 
 	public Add() {
 		super();
@@ -24,23 +24,36 @@ public class Add extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String indexPage = "add.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(indexPage);
+		RequestDispatcher rd = request.getRequestDispatcher(addPage);
 		rd.forward(request, response);
-		
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		String model = request.getParameter("model");
-		int capacity = Integer.parseInt(request.getParameter("capacity"));
-		int date = Integer.parseInt(request.getParameter("date"));
-		Plane plane = new Plane(model, capacity, date);
-		storage.add(plane);
-		out.append(plane.getName() + " was added!");
-	}
 
+		response.setContentType("text/html");
+		String model = request.getParameter("model");
+		Integer capacity = Integer.parseInt(request.getParameter("capacity"));
+		String builtDate = request.getParameter("date");
+		Plane newPlane = new Plane(model, capacity, builtDate);
+		if (model != null && capacity != null && capacity > 0 && builtDate != null) {
+			if (model != "" && builtDate != "") {
+				storage.add(newPlane);
+				request.setAttribute("successfully", "successfully added");
+				RequestDispatcher rd = request.getRequestDispatcher(addPage);
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("error", "error");
+				RequestDispatcher rd = request.getRequestDispatcher(addPage);
+				rd.forward(request, response);
+			}
+
+		} else {
+			request.setAttribute("error", "error");
+			RequestDispatcher rd = request.getRequestDispatcher(addPage);
+			rd.forward(request, response);
+		}
+
+	}
 }

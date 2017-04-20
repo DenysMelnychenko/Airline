@@ -33,6 +33,7 @@ input {
   border: 1px solid black;
 }
 table, td, th {
+	color: black;
 	background-color: yellow;
   align-self: center;
   text-align: center;
@@ -53,7 +54,7 @@ table, td, th {
   margin-top: 25px;
 }
 button {
-  margin:10px 0 0 24px;
+  margin:auto;
 }
 .add_form input[type="submit"] {
   margin-top: 10px;
@@ -67,4 +68,10 @@ body {
 .parent {
   margin:auto;
   width: 170px;
+}
+.success {
+  color: green;
+}
+.error {
+  color: red;
 }

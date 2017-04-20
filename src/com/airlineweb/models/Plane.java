@@ -3,10 +3,10 @@ package com.airlineweb.models;
 public class Plane {
 private String model;
 private int  capacity;
-private int builtDate;
+private String builtDate;
 private static Integer id = 0;
 
-public Plane(String name, int capacity, int builtDate) {
+public Plane(String name, int capacity, String builtDate) {
 	this.model = name;
 	this.capacity = capacity;
 	this.builtDate = builtDate;
@@ -29,11 +29,11 @@ public void setCapacity(int capacity) {
 	this.capacity = capacity;
 }
 
-public int getBuiltDate() {
+public String getBuiltDate() {
 	return builtDate;
 }
 
-public void setBuiltDate(int builtDAte) {
+public void setBuiltDate(String builtDAte) {
 	this.builtDate = builtDAte;
 }
 

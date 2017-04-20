@@ -23,13 +23,13 @@ public class ProductStorage {
 		return instance;
 	}
 
-	public void add(Plane food) {
-		storage.put(food.getId(), food);
+	public void add(Plane plane) {
+		storage.put(plane.getId(), plane);
 	}
 
 	public boolean remove(String model, int capacity) {
 		for (Map.Entry<Integer, Plane> item : storage.entrySet()) {
-			if (item.getValue().getName().equals(model) && item.getValue().getCapacity()==(capacity)) {
+			if (item.getValue().getName().equals(model) && item.getValue().getCapacity() == (capacity)) {
 				storage.remove(item.getKey());
 				return true;
 			}
@@ -45,6 +45,15 @@ public class ProductStorage {
 			}
 		}
 		return null;
+	}
+
+	public boolean contains(String model) {
+		for (Map.Entry<Integer, Plane> item : storage.entrySet()) {
+			if (item.getValue().getName().equals(model)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Map<Integer, Plane> getAll() {
