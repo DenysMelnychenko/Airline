@@ -6,6 +6,7 @@ import java.util.Map;
 import com.airlineweb.models.Plane;
 
 public class ProductStorage {
+
 	private static volatile ProductStorage instance;
 	private Map<Integer, Plane> storage = new HashMap<>();
 
@@ -38,13 +39,17 @@ public class ProductStorage {
 
 	}
 
-	public Plane getByName(String model) {
-		for (Map.Entry<Integer, Plane> item : storage.entrySet()) {
-			if (item.getValue().getName().equals(model)) {
-				return item.getValue();
+	public Map<Integer, Plane> SearchByModel(String name) {
+			Map<Integer, Plane> result = new HashMap<>(); 
+		for (Map.Entry<Integer, Plane> plane : storage.entrySet()) {
+			Plane desiredPlane = plane.getValue();
+			String modelName = desiredPlane.getName();
+			Integer id = plane.getKey();
+			if (modelName.equals(name)) {
+				result.put(id, desiredPlane);
 			}
 		}
-		return null;
+		return result;
 	}
 
 	public boolean contains(String model) {
