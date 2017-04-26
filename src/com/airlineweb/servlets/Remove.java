@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.airlineweb.repository.ProductStorage;
+import com.airlineweb.view.Message;
 
 @WebServlet("/remove")
 public class Remove extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ProductStorage storage = ProductStorage.getInstance();
+	private Message message = Message.DELETED;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,7 +30,7 @@ public class Remove extends HttpServlet {
 		String model = request.getParameter("model");
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		storage.remove(model, capacity);
-		request.setAttribute("success", "success");
+		request.setAttribute("deleted", message.getValue());
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/dashboard");
 		requestDispatcher.forward(request, response);
 	}

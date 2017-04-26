@@ -1,13 +1,16 @@
 package com.airlineweb.models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Plane {
-	
+
 	private String model;
 	private int capacity;
-	private String builtDate;
+	private Date builtDate;
 	private static Integer id = 0;
 
-	public Plane(String name, int capacity, String builtDate) {
+	public Plane(String name, int capacity, Date builtDate) {
 		this.model = name;
 		this.capacity = capacity;
 		this.builtDate = builtDate;
@@ -31,10 +34,10 @@ public class Plane {
 	}
 
 	public String getBuiltDate() {
-		return builtDate;
+		return new SimpleDateFormat("dd-MM-yyyy").format(builtDate);
 	}
 
-	public void setBuiltDate(String builtDAte) {
+	public void setBuiltDate(Date builtDAte) {
 		this.builtDate = builtDAte;
 	}
 

@@ -17,19 +17,26 @@
 		<li><a href="dashboard">Dashboard</a></li>
 	</ul>
 
-	<form class="search_form" action="find" method="post">
-		<input type="text"> <input type="submit" value="search">
+	<form class="search_form" action="find" method="POST">
+		<input type="text" name="search"> <input type="submit"
+			value="Search">
 	</form>
 
 	<div>
 		<%
-			if (request.getAttribute("error") != null) {
-				String message = (String) request.getAttribute("error");
+			if (request.getAttribute("Is empty") != null) {
+				String message = (String) request.getAttribute("Is empty");
+		%>
+		<p class="error"><%= message%></p>
+		<%
+			} else
 		%>
 		<%
-			if (message.equals("error"))
+			if (request.getAttribute("Not found") != null) {
+				String message = (String) request.getAttribute("Not found");
 		%>
-		<p class="error">THERE ARE NOTHING TO SHOW.</p>
+
+		<p class="error"><%= message%></p>
 		<%
 			} else
 		%>

@@ -18,7 +18,7 @@
 		<form class="add-form" action="add" method="post">
 			Model: <br> <input type="text" name="model"><br>
 			Capacity:<br> <input type="text" name="capacity"><br>
-			Build date:<br> <input type="text" name="date"><br>
+			Build date:<br> <input type="date" name="date"><br>
 			<input type="submit" value="Add">
 		</form>
 	</div>
@@ -27,21 +27,17 @@
 			String message = "";
 		%>
 		<%
-			if (request.getAttribute("successfully") != null) {
-				message = (String) request.getAttribute("successfully");
+			if (request.getAttribute("added") != null) {
+				message = (String) request.getAttribute("added");
 		%>
+
+		<p class="success"><%=message%></p>
 		<%
-			if (message.equals("successfully"))
+			} else if (request.getAttribute("wrong input") != null) {
+				message = (String) request.getAttribute("wrong input");
 		%>
-		<p class="success">SUCCESSFULLY</p>
-		<%
-			} else if (request.getAttribute("error") != null) {
-				message = (String) request.getAttribute("error");
-		%>
-		<%
-			if (message.equals("error"))
-		%>
-		<p class="error">SOMETHING WENT WRONG! CHECK YOUR INPUT PLEASE!</p>
+
+		<p class="error"><%=message %></p>
 		<%
 			}
 		%>

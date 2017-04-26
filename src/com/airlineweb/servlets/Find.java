@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.airlineweb.models.Plane;
 import com.airlineweb.repository.ProductStorage;
+import com.airlineweb.view.Message;
 
 @WebServlet("/find")
 public class Find extends HttpServlet {
@@ -19,6 +20,7 @@ public class Find extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductStorage storage = ProductStorage.getInstance();
 	private String dashboardPageUrl = "/dashboard.jsp";
+	private Message message = Message.THE_AIRCRAFT_WAS_NOT_FOUND;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,7 +34,7 @@ public class Find extends HttpServlet {
 
 		Map<Integer, Plane> planes = storage.SearchByModel(name);
 		if (planes.isEmpty()) {
-			request.setAttribute("error", "error");
+			request.setAttribute("Not found", message.getValue());
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(dashboardPageUrl);
 			requestDispatcher.forward(request, response);
 		} else {
