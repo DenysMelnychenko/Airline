@@ -1,8 +1,7 @@
-# Output
-out/
-bin/
+# 
 build/classes/com/airline/models/
 build/classes/com/airline/repository/
 build/classes/com/airline/servlets/
 *.class
 
+build

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<%@page import="com.airlineweb.models.Plane"%>
+<%@page import="com.airlineweb.model.Plane"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 
