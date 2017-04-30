@@ -3,7 +3,7 @@ package com.airlineweb.repository;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.airlineweb.models.Plane;
+import com.airlineweb.model.Plane;
 
 public class ProductStorage {
 
