@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 <link rel="stylesheet" href="css/style.css">
@@ -23,24 +26,13 @@
 		</form>
 	</div>
 	<div>
-		<%
-			String message = "";
-		%>
-		<%
-			if (request.getAttribute("added") != null) {
-				message = (String) request.getAttribute("added");
-		%>
-
-		<p class="success"><%=message%></p>
-		<%
-			} else if (request.getAttribute("wrong input") != null) {
-				message = (String) request.getAttribute("wrong input");
-		%>
-
-		<p class="error"><%=message %></p>
-		<%
-			}
-		%>
+		<p class="error">
+			<c:out value="${wronginput}" />
+		</p>
+		<p class="success">
+			<c:out value="${added}" />
+		</p>
+		
 	</div>
 
 

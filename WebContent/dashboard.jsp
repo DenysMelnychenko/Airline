@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 
-<%@page import="com.airlineweb.model.Plane"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -23,37 +21,16 @@
 	</form>
 
 	<div>
-		<%
-			if (request.getAttribute("Is empty") != null) {
-				String message = (String) request.getAttribute("Is empty");
-		%>
-		<p class="error"><%= message%></p>
-		<%
-			} else
-		%>
-		<%
-			if (request.getAttribute("Not found") != null) {
-				String message = (String) request.getAttribute("Not found");
-		%>
-
-		<p class="error"><%= message%></p>
-		<%
-			} else
-		%>
-
-		<%
-			if (request.getAttribute("success") != null) {
-				String message = (String) request.getAttribute("success");
-		%>
-		<%
-			if (message.equals("success"))
-		%>
-		<p class="success">SUCCESSFULLY DELETED</p>
-		<%
-			}
-		%>
+		<p class="error">
+			<c:out value="${isempty}" />
+		</p>
+		<p class="error">
+			<c:out value="${notfound}" />
+		</p>
+		<p class="success">
+			<c:out value="${deleted}" />
+		</p>
 	</div>
-
 
 	<div class="output">
 		<table>
@@ -64,33 +41,24 @@
 				<th>Build date</th>
 				<th></th>
 			</tr>
-			<%
-				if (request.getAttribute("planes") != null) {
-
-					Map<Integer, Plane> planes = (Map<Integer, Plane>) request.getAttribute("planes");
-
-					for (Map.Entry<Integer, Plane> plane : planes.entrySet()) {
-			%>
-			<tr>
-				<td><%=plane.getKey()%></td>
-				<td><%=plane.getValue().getName()%></td>
-				<td><%=plane.getValue().getCapacity()%></td>
-				<td><%=plane.getValue().getBuiltDate()%></td>
-				<td><form action="remove" method="post">
-						<input value="<%=plane.getValue().getName()%>" name="model"
-							style="display: none" /> <input
-							value="<%=plane.getValue().getCapacity()%>" name="capacity"
-							style="display: none" />
-						<button type="submit" name="delete">Delete</button>
-					</form></td>
-			</tr>
-			<%
-				}
-			%>
-			<%
-				}
-			%>
-
+			<c:set var="planes" value="${planes}" />
+			<c:if test="${planes ne null}">
+				<c:forEach var="plane" items="${planes}">
+					<tr>
+						<td>${plane.getKey()}</td>
+						<td>${plane.getValue().getName()}</td>
+						<td>${plane.getValue().getCapacity()}</td>
+						<td>${plane.getValue().getBuiltDate()}</td>
+						<td><form action="remove" method="post">
+								<input value="${plane.getValue().getName()}" name="model"
+									style="display: none" /> <input
+									value="${plane.getValue().getCapacity()}" name="capacity"
+									style="display: none" />
+								<button type="submit" name="delete">Delete</button>
+							</form></td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</table>
 	</div>
 

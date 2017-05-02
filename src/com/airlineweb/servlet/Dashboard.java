@@ -20,7 +20,7 @@ public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductStorage storage = ProductStorage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
-	private static final String IS_EMPTY = "Is empty";
+	private static final String IS_EMPTY = "isempty";
 	private static final String PLANES = "planes";
 	
 

@@ -24,9 +24,9 @@ public class Add extends HttpServlet {
 	private ProductStorage storage = ProductStorage.getInstance();
 	private static final String ADD_PAGE_URL = "/add.jsp";
 	private static final String ADDED = "added";
-	private static final String WRONG_INPUT = "wrong input";
+	private static final String WRONG_INPUT = "wronginput";
 	private static final String MODEL = "model";
-	private static final String CAPACITY = "capasity";
+	private static final String CAPACITY = "capacity";
 	private static final String DATE = "date";
 	private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd";
 	

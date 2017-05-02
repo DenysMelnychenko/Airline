@@ -21,7 +21,7 @@ public class Find extends HttpServlet {
 	private ProductStorage storage = ProductStorage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String SEARCH = "search";
-	private static final String NOT_FOUND = "not found";
+	private static final String NOT_FOUND = "notfound";
 	private static final String PLANES = "planes";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,16 +29,17 @@ public class Find extends HttpServlet {
 		response.setContentType("text/html");
 
 		String name = request.getParameter(SEARCH);
-		Map<Integer, Plane> planes = storage.SearchByModel(name);
+		if (!name.equals(null)) {
+			Map<Integer, Plane> planes = storage.SearchByModel(name);
 
-		if (planes.isEmpty()) {
-			request.setAttribute(NOT_FOUND, Message.THE_AIRCRAFT_WAS_NOT_FOUND.getValue());
+			if (planes.isEmpty()) {
+				request.setAttribute(NOT_FOUND, Message.THE_AIRCRAFT_WAS_NOT_FOUND.getValue());
 
-		} else {
+			} else {
 
-			request.setAttribute(PLANES, planes);
+				request.setAttribute(PLANES, planes);
+			}
 		}
-		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(DASHBOARD_PAGE_URL);
 		requestDispatcher.forward(request, response);
 	}

@@ -20,7 +20,7 @@ public class Remove extends HttpServlet {
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String DELETED = "deleted";
 	private static final String MODEL = "model";
-	private static final String CAPACITY = "capasity";
+	private static final String CAPACITY = "capacity";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
