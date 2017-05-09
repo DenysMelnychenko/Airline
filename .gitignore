@@ -1,7 +1,5 @@
 # 
-build/classes/com/airline/models/
-build/classes/com/airline/repository/
-build/classes/com/airline/servlets/
+target/
 *.class
 
 build
