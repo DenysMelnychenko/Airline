@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.airlineweb.message.Message;
 import com.airlineweb.model.Plane;
-import com.airlineweb.repository.ProductStorage;
+import com.airlineweb.repository.Storage;
 
 @WebServlet("/dashboard")
 public class Dashboard extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private ProductStorage storage = ProductStorage.getInstance();
+	private Storage storage = Storage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String IS_EMPTY = "isempty";
 	private static final String PLANES = "planes";

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.airlineweb.message.Message;
-import com.airlineweb.repository.ProductStorage;
+import com.airlineweb.repository.Storage;
 
 
 
@@ -18,7 +18,7 @@ import com.airlineweb.repository.ProductStorage;
 public class Remove extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private ProductStorage storage = ProductStorage.getInstance();
+	private Storage storage = Storage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String DELETED = "deleted";
 	private static final String MODEL = "model";

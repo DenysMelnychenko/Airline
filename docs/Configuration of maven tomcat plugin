@@ -1,0 +1,31 @@
+Setup:
+To configure maven tomcat plugin you should add new user to  tomcat-users.xml at tomcat setting and configute server.xml
+The path to the settings is %TOMCAT_PATH%/conf/tomcat-users.xml
+There you should insert the appropriate lines
+
+	<tomcat-users>
+		<role rolename="manager-gui"/>  
+        <role rolename="manager-script"/>   
+        <user username="admin" password="admin" roles="manager-gui,manager-script" />
+	</tomcat-users>
+	
+Then you should to edit Maven settings.xml
+Insert appropriate lines
+	<server>
+       <id>TomcatServer</id>
+       <username>admin</username>
+       <password>admin</password>
+    </server>	
+To launch the program you should run Tomcat from command line with help of next command
+	cd %TOMCAT_PATH%/bin
+	startup.bat (if you use windows)
+	 or 
+	 startup.sh	(if you use linux or mac OS)
+	 
+After that you should deploy project to Tomcat server
+use next command from project directory:
+	%PROJECT_PATH% mvn tomcat7:depoy -Pstudent 	 (if you want to use Student profile)
+or
+	%PROJECT_PATH% mvn tomcat7:depoy -Pmentor 	 (if you want to use Mentor profile)
+To open project launch browser and enter URL: your_tomcat_server_address/airline
+	

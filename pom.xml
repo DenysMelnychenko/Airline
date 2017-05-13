@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.airline</groupId>
-	<artifactId>AirlineWebApp</artifactId>
+	<groupId>com.melnychenko</groupId>
+	<artifactId>Airline</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>AirlineWebApp Maven Webapp</name>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>Airline Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -28,10 +28,16 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
-		<finalName>AirlineWebApp</finalName>
+		<finalName>Airline</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -49,7 +55,7 @@
 				<configuration>
 					<url>${tomcat.url}</url>
 					<server>TomcatServer</server>
-					<path>/AirlineWebApp</path>
+					<path>/Airline</path>
 					<username>admin</username>
 					<password>admin</password>
 				</configuration>

@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.airlineweb.message.Message;
 import com.airlineweb.model.Plane;
-import com.airlineweb.repository.ProductStorage;
+import com.airlineweb.repository.Storage;
 import com.airlineweb.util.InputCheker;
 
 @WebServlet("/add")
 public class Add extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private ProductStorage storage = ProductStorage.getInstance();
+	private Storage storage = Storage.getInstance();
 	private static final String ADD_PAGE_URL = "/add.jsp";
 	private static final String ADDED = "added";
 	private static final String WRONG_INPUT = "wronginput";
@@ -43,11 +43,11 @@ public class Add extends HttpServlet {
 		try {
 			String model = request.getParameter(MODEL);
 			Integer capacity = Integer.parseInt(request.getParameter(CAPACITY));
-			Date builtdate = new SimpleDateFormat(DATE_FORMAT_PATTERN).parse(request.getParameter(DATE));
+			Date builtDate = new SimpleDateFormat(DATE_FORMAT_PATTERN).parse(request.getParameter(DATE));
 
-			if (InputCheker.approved(model, capacity, builtdate)) {
+			if (InputCheker.approved(model, capacity, builtDate)) {
 
-				Plane newPlane = new Plane(model, capacity, builtdate);
+				Plane newPlane = new Plane(model, capacity, builtDate);
 				storage.add(newPlane);
 				request.setAttribute(ADDED, Message.PLANE_WAS_SUCCESSFULLY_ADDED.getValue());
 				RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(ADD_PAGE_URL);

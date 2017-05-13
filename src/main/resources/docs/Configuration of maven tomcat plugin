@@ -1,2 +1,0 @@
-To configure maven tomcat plugin you should add tomcat-users.xml to tomcat setting
-%TOMCAT_PATH%/conf/tomcat-users.xml

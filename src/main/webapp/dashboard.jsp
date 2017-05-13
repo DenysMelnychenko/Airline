@@ -41,18 +41,17 @@
 				<th>Build date</th>
 				<th></th>
 			</tr>
-			<c:set var="planes" value="${planes}" />
-			<c:if test="${planes ne null}">
+			<c:if test="${not empty planes}">
 				<c:forEach var="plane" items="${planes}">
 					<tr>
 						<td>${plane.getKey()}</td>
-						<td>${plane.getValue().getName()}</td>
-						<td>${plane.getValue().getCapacity()}</td>
-						<td>${plane.getValue().getBuiltDate()}</td>
+						<td>${plane.name}</td>
+						<td>${plane.capacity}</td>
+						<td>${plane.buitDate}</td>
 						<td><form action="remove" method="post">
-								<input value="${plane.getValue().getName()}" name="model"
+								<input value="${plane.name}" name="model"
 									style="display: none" /> <input
-									value="${plane.getValue().getCapacity()}" name="capacity"
+									value="${plane.capacity}" name="capacity"
 									style="display: none" />
 								<button type="submit" name="delete">Delete</button>
 							</form></td>
