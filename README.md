@@ -21,16 +21,17 @@ Insert appropriate lines<br>
 
 To launch the program you should run Tomcat from command line with help of next command<br>
 
-	cd %TOMCAT_PATH%/bin<br>
-	startup.bat (if you use windows)<br>
-	 or <br>
-	 startup.sh	(if you use linux or mac OS)<br>
+	cd %TOMCAT_PATH%/bin
+	startup.bat (if you use windows)
+	 or
+	 startup.sh	(if you use linux or mac OS)
 
-After that you should deploy project to Tomcat server<br>
-use next command from project directory:<br>
+After that you should deploy project to Tomcat server
+use next command from project directory:
 
-	%PROJECT_PATH% mvn tomcat7:depoy -Pstudent 	 (if you want to use Student profile)<br>
-or<br>
-	%PROJECT_PATH% mvn tomcat7:depoy -Pmentor 	 (if you want to use Mentor profile)<br>
-	
-To open project launch browser and enter URL: your_tomcat_server_address/airline<br>
+	%PROJECT_PATH% mvn tomcat7:depoy -Pstudent (if you want to use Student profile)
+or
+
+	%PROJECT_PATH% mvn tomcat7:depoy -Pmentor (if you want to use Mentor profile)
+
+To open project launch browser and enter URL: your_tomcat_server_address/airline
