@@ -10,7 +10,7 @@ There you should insert the appropriate lines
         <user username="admin" password="admin" roles="manager-gui,manager-script" />
 	</tomcat-users>
 
-Then you should edit Maven <b>settings.xml</b><br>
+Then you should edit Maven <strong>settings.xml</strong><br>
 Insert appropriate lines<br>
 
 	<server>
@@ -34,4 +34,4 @@ or
 
 	%PROJECT_PATH% mvn tomcat7:depoy -Pmentor (if you want to use Mentor profile)
 
-To open project launch browser and enter URL: <b>your_tomcat_server_address/airline</b>
+To open project launch browser and enter URL: <strong>your_tomcat_server_address/airline</strong>
