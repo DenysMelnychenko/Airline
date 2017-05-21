@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.airlineweb.message.Message;
 import com.airlineweb.repository.Storage;
 
@@ -17,6 +19,8 @@ import com.airlineweb.repository.Storage;
 @WebServlet("/remove")
 public class Remove extends HttpServlet {
 
+	private final static Logger logger = Logger.getLogger(Home.class);
+	
 	private static final long serialVersionUID = 1L;
 	private Storage storage = Storage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
@@ -28,13 +32,20 @@ public class Remove extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 
+		logger.debug("POST request was recieved from " + request.getRemoteAddr());
+
 		String model = request.getParameter(MODEL);
 		int capacity = Integer.parseInt(request.getParameter(CAPACITY));
 		storage.remove(model, capacity);
 		
 		request.setAttribute(DELETED, Message.DELETED.getValue());
 		
+		logger.debug("The attribute " + DELETED + " was specified with value - "
+				+ Message.DELETED.getValue());
+		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(DASHBOARD_PAGE_URL);
 		requestDispatcher.forward(request, response);
+		
+		logger.debug("Sent redirect to the " + DASHBOARD_PAGE_URL);
 	}
 }
