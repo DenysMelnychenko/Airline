@@ -21,7 +21,7 @@ import com.airlineweb.util.InputCheker;
 
 @WebServlet("/add")
 public class Add extends HttpServlet {
-	
+
 	private final static Logger logger = Logger.getLogger(Add.class);
 
 	private static final long serialVersionUID = 1L;
@@ -43,8 +43,8 @@ public class Add extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		
-		logger.debug("POST request was recieved from "+request.getRemoteAddr());
+
+		logger.debug("POST request was recieved from " + request.getRemoteAddr());
 
 		try {
 			String model = request.getParameter(MODEL);
@@ -56,41 +56,60 @@ public class Add extends HttpServlet {
 				logger.debug("Model: " + model + "\n" + "Capacity: " + capacity + "\n" + "BuiltDate: " + builtDate
 						+ "\n" + " was Approved");
 				Plane newPlane = new Plane(model, capacity, builtDate);
+
 				logger.debug("Created new plane " + newPlane.getName());
+
 				storage.add(newPlane);
 				request.setAttribute(ADDED, Message.PLANE_WAS_SUCCESSFULLY_ADDED.getValue());
-				logger.debug(
-						"The attribute " + ADDED + " was specified with value - " + Message.PLANE_WAS_SUCCESSFULLY_ADDED.getValue());
+
+				logger.debug("The attribute " + ADDED + " was specified with value - "
+						+ Message.PLANE_WAS_SUCCESSFULLY_ADDED.getValue());
+
 				RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(ADD_PAGE_URL);
 				requestDispatcher.forward(request, response);
+
 				logger.debug("Sent redirect to the " + ADD_PAGE_URL);
 
 			} else {
 
-				logger.debug("Model: " + model + "\n" + "Capacity: " + capacity + "\n" + "BuiltDate: " + builtDate
+				logger.error("Model: " + model + "\n" + "Capacity: " + capacity + "\n" + "BuiltDate: " + builtDate
 						+ "\n" + " was not Approved");
+
 				request.setAttribute(WRONG_INPUT, Message.WRONG_INPUT.getValue());
-				logger.debug("The attribute " + WRONG_INPUT + " was specified with value - " + Message.WRONG_INPUT.getValue());
+
+				logger.debug("The attribute " + WRONG_INPUT + " was specified with value - "
+						+ Message.WRONG_INPUT.getValue());
+
 				RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(ADD_PAGE_URL);
 				requestDispatcher.forward(request, response);
+
 				logger.debug("Sent redirect to the " + ADD_PAGE_URL);
 
 			}
 		} catch (IllegalArgumentException e) {
 
+			logger.error("IllegalArgumentException was occurred");
+
 			request.setAttribute(WRONG_INPUT, Message.WRONG_INPUT.getValue());
-			logger.debug("IllegalArgumentException was occurred");
-			logger.debug("The attribute " + WRONG_INPUT + " was specified with value - " + Message.WRONG_INPUT.getValue());
+
+			logger.debug(
+					"The attribute " + WRONG_INPUT + " was specified with value - " + Message.WRONG_INPUT.getValue());
+
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(ADD_PAGE_URL);
 			requestDispatcher.forward(request, response);
+
 			logger.debug("Sent redirect to the " + ADD_PAGE_URL);
 		} catch (ParseException e) {
-			
-			logger.debug("ParseException was occurred");
+
+			logger.error("ParseException was occurred");
+
 			request.setAttribute(WRONG_INPUT, Message.WRONG_INPUT.getValue());
-			logger.debug("The attribute " + WRONG_INPUT + " was specified with value - " + Message.WRONG_INPUT.getValue());
+			logger.debug(
+					"The attribute " + WRONG_INPUT + " was specified with value - " + Message.WRONG_INPUT.getValue());
+
 			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(ADD_PAGE_URL);
 			requestDispatcher.forward(request, response);
+
 			logger.debug("Sent redirect to the " + ADD_PAGE_URL);
 		}
 
