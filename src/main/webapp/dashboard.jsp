@@ -45,13 +45,13 @@
 				<c:forEach var="plane" items="${planes}">
 					<tr>
 						<td>${plane.getKey()}</td>
-						<td>${plane.name}</td>
-						<td>${plane.capacity}</td>
-						<td>${plane.buitDate}</td>
+						<td>${plane.getValue().name}</td>
+						<td>${plane.getValue().capacity}</td>
+						<td>${plane.getValue().builtDate}</td>
 						<td><form action="remove" method="post">
-								<input value="${plane.name}" name="model"
+								<input value="${plane.getValue().name}" name="model"
 									style="display: none" /> <input
-									value="${plane.capacity}" name="capacity"
+									value="${plane.getValue().capacity}" name="capacity"
 									style="display: none" />
 								<button type="submit" name="delete">Delete</button>
 							</form></td>

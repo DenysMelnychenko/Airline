@@ -65,7 +65,6 @@
 	<profiles>
 		<profile>
 			<id>student</id>
-
 			<properties>
 				<tomcat.url>http://localhost:8080/manager/text</tomcat.url>
 			</properties>
