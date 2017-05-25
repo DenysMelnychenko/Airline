@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.airlineweb.message.Message;
-import com.airlineweb.repository.Storage;
+import com.airlineweb.repository.PlaneStorage;
 
 
 
@@ -22,7 +22,7 @@ public class Remove extends HttpServlet {
 	private final static Logger logger = Logger.getLogger(Home.class);
 	
 	private static final long serialVersionUID = 1L;
-	private Storage storage = Storage.getInstance();
+	private PlaneStorage storage = PlaneStorage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String DELETED = "deleted";
 	private static final String MODEL = "model";

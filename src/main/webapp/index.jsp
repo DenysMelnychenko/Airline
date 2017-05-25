@@ -13,6 +13,12 @@
 		<li><a href="dashboard">Dashboard</a></li>
 	</ul>
 
+	<div class="registration">
+		<form action="registration" method="GET">
+			<button type="submit">Registration</button>
+		</form>
+	</div>
+
 	<h1 align="center">Project description:</h1>
 
 	<ul class="description">
@@ -26,5 +32,10 @@
 			href="dashboard">Dashboard page</a></li>
 	</ul>
 
+	<div class="registration">
+		<form action="registration" method="GET">
+			<button type="submit">Registration</button>
+		</form>
+	</div>
 </body>
 </html>

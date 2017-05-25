@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 
 import com.airlineweb.message.Message;
 import com.airlineweb.model.Plane;
-import com.airlineweb.repository.Storage;
+import com.airlineweb.repository.PlaneStorage;
 
 @WebServlet("/dashboard")
 public class Dashboard extends HttpServlet {
@@ -22,7 +22,7 @@ public class Dashboard extends HttpServlet {
 	private final static Logger logger = Logger.getLogger(Dashboard.class);
 
 	private static final long serialVersionUID = 1L;
-	private Storage storage = Storage.getInstance();
+	private PlaneStorage storage = PlaneStorage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String IS_EMPTY = "isempty";
 	private static final String PLANES = "planes";

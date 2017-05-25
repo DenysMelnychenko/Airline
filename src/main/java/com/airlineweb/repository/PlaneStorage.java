@@ -7,19 +7,19 @@ import org.apache.log4j.Logger;
 
 import com.airlineweb.model.Plane;
 
-public class Storage {
-	private final static Logger logger = Logger.getLogger(Storage.class);
-	private static volatile Storage instance;
+public class PlaneStorage {
+	private final static Logger logger = Logger.getLogger(PlaneStorage.class);
+	private static volatile PlaneStorage instance;
 	private Map<Integer, Plane> storage = new HashMap<>();
 
-	private Storage() {
+	private PlaneStorage() {
 	}
 
-	public static Storage getInstance() {
+	public static PlaneStorage getInstance() {
 		if (instance == null) {
-			synchronized (Storage.class) {
+			synchronized (PlaneStorage.class) {
 				if (instance == null) {
-					instance = new Storage();
+					instance = new PlaneStorage();
 				}
 			}
 		}

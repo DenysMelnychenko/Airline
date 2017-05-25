@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 
 import com.airlineweb.message.Message;
 import com.airlineweb.model.Plane;
-import com.airlineweb.repository.Storage;
+import com.airlineweb.repository.PlaneStorage;
 import com.airlineweb.util.InputCheker;
 
 @WebServlet("/add")
@@ -25,7 +25,7 @@ public class Add extends HttpServlet {
 	private final static Logger logger = Logger.getLogger(Add.class);
 
 	private static final long serialVersionUID = 1L;
-	private Storage storage = Storage.getInstance();
+	private PlaneStorage storage = PlaneStorage.getInstance();
 	private static final String ADD_PAGE_URL = "/add.jsp";
 	private static final String ADDED = "added";
 	private static final String WRONG_INPUT = "wronginput";

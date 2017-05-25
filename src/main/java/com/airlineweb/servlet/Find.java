@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 
 import com.airlineweb.message.Message;
 import com.airlineweb.model.Plane;
-import com.airlineweb.repository.Storage;
+import com.airlineweb.repository.PlaneStorage;
 
 @WebServlet("/find")
 public class Find extends HttpServlet {
@@ -22,7 +22,7 @@ public class Find extends HttpServlet {
 	private final static Logger logger = Logger.getLogger(Find.class);
 
 	private static final long serialVersionUID = 1L;
-	private Storage storage = Storage.getInstance();
+	private PlaneStorage storage = PlaneStorage.getInstance();
 	private static final String DASHBOARD_PAGE_URL = "/dashboard.jsp";
 	private static final String SEARCH = "search";
 	private static final String NOT_FOUND = "notfound";
