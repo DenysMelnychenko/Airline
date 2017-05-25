@@ -25,6 +25,9 @@ public class RegistrationServlet extends HttpServlet {
 	private static final String HOME_PAGE_URL = "/index.jsp";
 	private static final String EMAIL = "email";
 	private static final String PASSWORD = "password";
+	private static final String REGISTRATION_OK = "registrationOk";
+	private static final String REGISTRATION_MESSAGE = "Registration was successful";
+
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -41,12 +44,15 @@ public class RegistrationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		
+		logger.debug("POST request was recieved from " + request.getRemoteAddr());
+
+		
 		String email = request.getParameter(EMAIL);
 		String password = request.getParameter(PASSWORD);
 		
 		User user = new User(email, password);
 		storage.add(user);
-		
+		request.setAttribute(REGISTRATION_OK, REGISTRATION_MESSAGE);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(HOME_PAGE_URL);
 		requestDispatcher.forward(request, response);
 		

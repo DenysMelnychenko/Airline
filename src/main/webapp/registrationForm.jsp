@@ -20,6 +20,7 @@
 	<div class="parent">
 		<form class="registration-form" action="registration" method="post">
 			Email: <br> <input type="text" name="email"><br>
+			<c:out value="${emailValidationError }"></c:out>
 			Password:<br> <input type="password" name="password"><br>
 			Repeat password:<br> <input type="password" name="repeatPassword"><br>
 			<input type="submit" value="Register">

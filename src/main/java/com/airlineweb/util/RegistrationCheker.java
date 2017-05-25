@@ -44,16 +44,18 @@ public class RegistrationCheker {
 
 		return false;
 	}
-	
+
 	public static boolean isRegistrationValid(String email, String password, String repeatPassword) {
-		
+
 		logger.debug("Registration information was checked");
-		
-		return isEmailValid(email) && isPasswordlValid(password) && isRepeatPasswordValid(password, repeatPassword);
+
+		if (isEmailValid(email) && isPasswordlValid(password) && isRepeatPasswordValid(password, repeatPassword)) {
+			return true;
+		} else
+			return false;
 	}
 
- public static void main(String[] args) {
-	 System.out.println(isEmailValid("aspirant_89@gmail.com"));
-	 
- }
+	/*public static void main(String[] args) {
+		System.out.println(isEmailValid("1"));
+	}*/
 }

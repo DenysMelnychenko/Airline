@@ -11,11 +11,17 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
+import com.airlineweb.servlet.Dashboard;
 import com.airlineweb.util.RegistrationCheker;
 
-@WebFilter( "/registration" )
+@WebFilter("/registration")
 public class RegistrationFilter implements Filter {
 
+	private final static Logger logger = Logger.getLogger(RegistrationFilter.class);
+
+	private static final String REG_JSP_PATH = "/registrationForm.jsp";
 	private static final String POST = "post";
 	private static final String EMAIL = "email";
 	private static final String PASSWORD = "password";
@@ -38,9 +44,9 @@ public class RegistrationFilter implements Filter {
 
 			String email = request.getParameter(EMAIL);
 			String password = request.getParameter(PASSWORD);
-			String repeatPassword =  request.getParameter(REPEAT_PASSWORD);
+			String repeatPassword = request.getParameter(REPEAT_PASSWORD);
 
-			if (RegistrationCheker.isRegistrationValid(email, password, repeatPassword) == true) {
+			if (RegistrationCheker.isRegistrationValid(email, password, repeatPassword)) {
 
 				chain.doFilter(request, response);
 
@@ -74,10 +80,14 @@ public class RegistrationFilter implements Filter {
 				}
 			}
 
-		}
+			request.getRequestDispatcher(REG_JSP_PATH).forward(request, response);
 
-		else
-			chain.doFilter(request, response);
+		}
+		
+		logger.debug("Filter pass request throгgh");
+		
+		chain.doFilter(request, response);
+
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
