@@ -7,16 +7,24 @@
   border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
-  background: violet;
-}
-.registration button {
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #black;
+  background-color: #a64dff;
+  border: none;
+  border-radius: 15px;
+}
+.registration .registration-form .search_form button {
+  padding: 10px 15px;
+  font-size: 20px;
   text-align: center;
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: #4CAF50;
+  background-color: #a64dff;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
@@ -42,6 +50,7 @@ button:active {
   width: 150px;
 }
 .add-form, .registration-form {
+  display: block;
   text-align: center;
   border: 1px solid black;
   width: 180px;
@@ -83,8 +92,10 @@ html {
 }
 body {
   text-align: center;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .parent {
+  font-size: 32;
   margin:auto;
   width: 170px;
 }
@@ -93,4 +104,10 @@ body {
 }
 .error {
   color: red;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+}
+.registration-form span {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 16pt;
 }

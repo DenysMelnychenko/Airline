@@ -13,6 +13,7 @@
 		<li><a href="home">Home</a></li>
 		<li><a href="add">Add</a></li>
 		<li><a href="dashboard">Dashboard</a></li>
+		<li><a href ="login">Login</a></li>
 	</ul>
 
 	<h3>Add product</h3>

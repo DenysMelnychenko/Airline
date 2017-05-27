@@ -13,11 +13,11 @@
 		<li><a href="home">Home</a></li>
 		<li><a href="add">Add</a></li>
 		<li><a href="dashboard">Dashboard</a></li>
+		<li><a href ="login">Login</a></li>
 	</ul>
 
 	<form class="search_form" action="find" method="POST">
-		<input type="text" name="search"> <input type="submit"
-			value="Search">
+		<input type="text" name="search"> <button type="submit" name="search">Search</button>
 	</form>
 
 	<div>

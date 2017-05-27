@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.airlineweb.message.Message;
 import com.airlineweb.servlet.Dashboard;
 import com.airlineweb.util.RegistrationCheker;
 
@@ -26,10 +27,16 @@ public class RegistrationFilter implements Filter {
 	private static final String EMAIL = "email";
 	private static final String PASSWORD = "password";
 	private static final String REPEAT_PASSWORD = "repeatPassword";
-	private static final String EMAIL_VALIDATION_ERROR = "There was a mistake when entering email";
-	private static final String PASSWORD_TO_SHORT = "Password is too short. Minimum 5 symbols";
-	private static final String PASSWORD_TO_LONG = "Password is too long. Maximum is 25 symbols";
-	private static final String PASSWORD_MISMATCH = "Password do not match";
+	private static final String PASSWORD_TO_SHORT = "passwordToShort";
+	private static final String REPEAT_PASSWORD_TO_SHORT = "repeatPasswordToShort";
+	private static final String PASSWORD_TO_SHORT_MESSAGE = "Password is too short. Minimum 5 symbols";
+	private static final String PASSWORD_TO_LONG = "passwordToLong";
+	private static final String REPEAT_PASSWORD_TO_LONG = "repeatPasswordToLong";
+	private static final String PASSWORD_TO_LONG_MESSAGE = "Password is too long. Maximum is 25 symbols";
+	private static final String PASSWORD_MISMATCH = "passwordsMismatch";
+	private static final String PASSWORD_MISMATCH_MESSAGE = "Passwords do not match";
+	private static final String EMAIL_VALIDATION_ERROR_MESSAGE = "There was a mistake when entering email";
+	private static final String EMAIL_VALIDATION_ERROR = "emailValidationError";
 
 	public void destroy() {
 
@@ -40,7 +47,7 @@ public class RegistrationFilter implements Filter {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-		if (httpRequest.getMethod().equals(POST)) {
+		if (httpRequest.getMethod().equalsIgnoreCase(POST)) {
 
 			String email = request.getParameter(EMAIL);
 			String password = request.getParameter(PASSWORD);
@@ -50,42 +57,48 @@ public class RegistrationFilter implements Filter {
 
 				chain.doFilter(request, response);
 
-			} else if (RegistrationCheker.isEmailValid(email) == false) {
+			}
+			if (RegistrationCheker.isEmailValid(email) == false) {
 
-				request.setAttribute("emailValidationError", EMAIL_VALIDATION_ERROR);
+				request.setAttribute(EMAIL_VALIDATION_ERROR, EMAIL_VALIDATION_ERROR_MESSAGE);
+				logger.debug("The attribute " + EMAIL_VALIDATION_ERROR + " was specified with value - "
+						+ EMAIL_VALIDATION_ERROR_MESSAGE);
+			}
 
-			} else if (RegistrationCheker.isPasswordlValid(password) == false) {
+			if (!RegistrationCheker.isPasswordlValid(password)) {
 
 				if (password.length() < 5) {
 
-					request.setAttribute("passwordToShort", PASSWORD_TO_SHORT);
-
-				} else {
-
-					request.setAttribute("passwordToLong", PASSWORD_TO_LONG);
+					request.setAttribute(PASSWORD_TO_SHORT, PASSWORD_TO_SHORT_MESSAGE);
 				}
+				if (password.length() > 25) {
 
-			} else if (RegistrationCheker.isRepeatPasswordValid(password, repeatPassword) == false) {
+					request.setAttribute(PASSWORD_TO_LONG, PASSWORD_TO_LONG_MESSAGE);
+				}
+			}
+
+			if (!RegistrationCheker.isRepeatPasswordValid(password, repeatPassword)) {
 
 				if (repeatPassword.length() < 5) {
 
-					request.setAttribute("passwordToShort", PASSWORD_TO_SHORT);
+					request.setAttribute(REPEAT_PASSWORD_TO_SHORT, PASSWORD_TO_SHORT_MESSAGE);
+				}
 
-				} else if (repeatPassword.length() > 25) {
+				if (repeatPassword.length() > 25) {
 
-					request.setAttribute("passwordToLong", PASSWORD_TO_LONG);
+					request.setAttribute(REPEAT_PASSWORD_TO_LONG, PASSWORD_TO_LONG_MESSAGE);
+				}
 
-				} else if (!repeatPassword.equals(password)) {
-					request.setAttribute("passwordMismatch", PASSWORD_MISMATCH);
+				if (!repeatPassword.equals(password)) {
+					request.setAttribute(PASSWORD_MISMATCH, PASSWORD_MISMATCH_MESSAGE);
 				}
 			}
 
 			request.getRequestDispatcher(REG_JSP_PATH).forward(request, response);
-
 		}
-		
-		logger.debug("Filter pass request throгgh");
-		
+
+		logger.debug("Filter pass request throгgh ");
+
 		chain.doFilter(request, response);
 
 	}
